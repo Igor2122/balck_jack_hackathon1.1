@@ -6,4 +6,24 @@ class Card {
     this.rank = rank;
     this.suit = suit;
   }
+
+  
+  render () {
+    this.element = document.createElement('div');
+    this.element.className = `card face-${this.rank}-of-${this.suit}`;
+
+    return this.element;
+  }
+
+  update() {
+
+  }
+
+  mount(parent) {
+    parent.appendChild(this.render());
+  }
+
+
+
+
 } 
