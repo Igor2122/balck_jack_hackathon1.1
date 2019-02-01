@@ -1,15 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-
-
-    // console.log(deck);
-});
-
 class Game {
     constructor(player, computer) {
         this.player = player;
         this.computer = computer;
-        this.score
+        // this.score
     }
 
 
@@ -52,10 +45,12 @@ class Game {
         if(player.isPlaying){
             player.score +=cardValue;
             player.attempts ++;
+            this.player.update();
             console.log(player.score, player.attempts);
         } else {
             computer.score += cardValue;
             computer.attempts ++;
+            this.computer.update();
         }
                 
 
@@ -70,6 +65,7 @@ class Game {
     }
 
     playCards() {
+
         if(player.isPlaying){
             this.dealCards(player);
         } else {
@@ -77,6 +73,10 @@ class Game {
                 this.dealCards(computer);
             }
         }
+    }
+
+    compareValues() {
+
     }
 
 

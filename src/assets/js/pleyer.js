@@ -10,5 +10,10 @@ class Player {
         this.isPlaying = false;
     }
 
+    update(){
+        let playerScore = document.querySelector('.player-score');
+        playerScore.textContent = this.score;
+    }
+
 
 }

@@ -1,5 +1,5 @@
 const player = new Player('Igor');
-const computer = new Computer('Enemy', 4, 2);
+const computer = new Computer('Enemy');
 
 const game = new Game(player, computer);
 game.seeScores();

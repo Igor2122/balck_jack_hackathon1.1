@@ -1,10 +1,14 @@
 class Computer {
-    constructor(name, score, attempts){
+    constructor(name){
         this.name = name;
-        this.score = score;
-        this.attempts = attempts;
+        this.score = 0;
+        this.attempts = 0;
         this.playing = false;
-        
+    }
+
+    update(){
+        let dealerScore = document.querySelector('.dealer-score');
+        dealerScore.textContent = this.score;
     }
 
     
