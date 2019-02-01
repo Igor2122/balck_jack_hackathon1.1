@@ -4,6 +4,7 @@ class Computer {
         this.score = score;
         this.attempts = attempts;
         this.playing = false;
+        
     }
 
     

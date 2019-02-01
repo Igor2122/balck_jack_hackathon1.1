@@ -7,12 +7,7 @@ class Player {
     }
 
     stand() {
-        const standButton = document.querySelector('.js-stand');
-
-        standButton.addEventListener('click', ()=> {
-            this.isPlaying = false;
-            console.log('button clikck', standButton);
-        })
+        this.isPlaying = false;
     }
 
 
