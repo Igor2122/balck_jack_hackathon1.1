@@ -34,7 +34,7 @@ class Game {
         
         // coutner to get the latest card from the deck
         let counter = 1;
-        hitButton.addEventListener('click', () => {
+        // hitButton.addEventListener('click', () => {
             let cardFromStack = deck.cards[deck.cards.length - counter]
             const card = new Card(cardFromStack.rank, cardFromStack.suit);
 
@@ -45,11 +45,12 @@ class Game {
             console.log(card);
             counter++;
             console.log(counter);
-        });
+        // });
     }
 
     playCards() {
         this.dealCards(computer);
     }
+
 
 }

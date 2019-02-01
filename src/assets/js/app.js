@@ -3,7 +3,12 @@ const computer = new Computer('Enemy', 4 , 2);
 
 const game = new Game(player, computer);
 game.seeScores();
-game.playCards();
+
+
+const dealhitButton = document.querySelector('.js-hit');
+dealhitButton.addEventListener('click', () => {
+    game.playCards();
+})
 
 
 
