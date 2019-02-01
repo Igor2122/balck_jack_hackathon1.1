@@ -277,6 +277,8 @@ body {
 
 .table {
   height: 152px;
+  width: 100%;
+  position: relative;
 }
 
 button {
