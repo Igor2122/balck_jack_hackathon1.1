@@ -101,14 +101,6 @@ class Game {
             if (player.isPlaying) {
                 this.dealCards(player);
             } else {
-                if(this.feelLuckyAlg()){
-                    setTimeout(() => {
-                        while (this.computer.score < 21) {
-                            this.dealCards(computer);
-                            console.log('Im feeling lucky');
-                        }
-                    },2000)
-                }
                 while (this.computer.score < 17) {
                     this.dealCards(computer);
                 }
@@ -132,7 +124,6 @@ class Game {
     }
 
     compareValues() {
-        let table = document.querySelector('.table');
 
         if (player.score === 21 && player.attempts === 2) {
             this.deal = false;
@@ -142,20 +133,22 @@ class Game {
         if (this.player.score > 21) {
             this.update(document.body, 'You Loose');
         }
-        
-        
+
+
 
         if (!this.player.isPlaying) {
             if (this.player.score > this.computer.score) {
                 this.update(document.body, 'You Won!');
             } else {
-                if(this.computer.score > 21){
+                if (this.computer.score > 21) {
                     this.update(document.body, 'You Won');
                 } else {
                     this.update(document.body, 'You Loose!');
                 }
             }
         }
+
+
 
     }
 
