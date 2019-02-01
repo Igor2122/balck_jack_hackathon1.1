@@ -48,7 +48,15 @@ class Game {
             cardValue = 10;
         }
          
-        
+
+        if(player.isPlaying){
+            player.score +=cardValue;
+            player.attempts ++;
+            console.log(player.score, player.attempts);
+        } else {
+            computer.score += cardValue;
+            computer.attempts ++;
+        }
                 
 
 
@@ -58,12 +66,17 @@ class Game {
         card.mount(playerParent)
         console.log(card);
         counter++;
-        // console.log(counter);
-        // });
+    
     }
 
     playCards() {
-        this.dealCards(computer);
+        if(player.isPlaying){
+            this.dealCards(player);
+        } else {
+            while(this.computer.score < 17){
+                this.dealCards(computer);
+            }
+        }
     }
 
 

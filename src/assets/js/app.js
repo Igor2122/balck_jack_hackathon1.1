@@ -1,4 +1,4 @@
-const player = new Player('Igor', 3 , 1);
+const player = new Player('Igor');
 const computer = new Computer('Enemy', 4 , 2);
 
 const game = new Game(player, computer);
@@ -8,7 +8,9 @@ game.seeScores();
 const dealhitButton = document.querySelector('.js-hit');
 dealhitButton.addEventListener('click', () => {
     game.playCards();
-})
+});
+
+player.stand();
 
 
 
