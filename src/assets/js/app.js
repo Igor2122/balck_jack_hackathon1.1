@@ -8,15 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const playerParent = document.querySelector('.cards-player');
   
-  let cardFromStack = deck.cards[deck.cards.length - 1]
+  let counter = 1;
   
   hitButton.addEventListener('click', () => {
+    let cardFromStack = deck.cards[deck.cards.length - counter]
     const card = new Card(cardFromStack.rank, cardFromStack.suit);
     card.mount(playerParent)
     console.log(card);
+    counter ++;
+    console.log(counter);
   })
 	
 
 
-  console.log(deck);
+  // console.log(deck);
 });
