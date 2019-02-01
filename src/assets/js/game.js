@@ -55,12 +55,43 @@ class Game {
 
 
 
-        console.log('TCL: Game -> dealCards -> cardsValue', cardValue, typeof cardValue)
-
 
         card.mount(playerParent)
-        console.log(card);
+        // console.log(card);
         counter++;
+
+    }
+
+    feelLuckyAlg() {
+        let randomNums = [];
+        let luckyNums = [];
+        let numSame = [];
+        let lucky = false;
+
+
+        for (let i = 0; i < 10; i++) {
+            randomNums.push(Math.floor(Math.random() * (11 - 1)) + 1)
+        };
+
+        for (let i = 0; i < 3; i++) {
+            luckyNums.push(Math.floor(Math.random() * (11 - 1)) + 1)
+        };
+
+        for (let i = 0; i < luckyNums.length; i++) {
+            for (let j = 0; j < randomNums.length; j++) {
+                if (luckyNums[i] === randomNums[j]) {
+                    numSame.push(randomNums[j]);
+                }
+            }
+
+        }
+        console.log('TCL: feelLuckyAlg -> numSame.length', numSame.length)
+        if (numSame.length >= 2) {
+            lucky = true;
+        } else {
+            lucky = false;
+        }
+        return lucky;
 
     }
 
@@ -70,17 +101,25 @@ class Game {
             if (player.isPlaying) {
                 this.dealCards(player);
             } else {
+                if(this.feelLuckyAlg()){
+                    setTimeout(() => {
+                        while (this.computer.score < 21) {
+                            this.dealCards(computer);
+                            console.log('Im feeling lucky');
+                        }
+                    },2000)
+                }
                 while (this.computer.score < 17) {
                     this.dealCards(computer);
                 }
             }
         }
-        
+
         this.compareValues()
-        
+
     }
 
-    winLooseBanner (value) {
+    winLooseBanner(value) {
         this.element = document.createElement('div');
         this.element.className = 'overlay';
         this.element.innerHTML = `<h2>${value}<h2>`
@@ -88,30 +127,36 @@ class Game {
         return this.element;
     }
 
-    update(parent, value){
+    update(parent, value) {
         parent.appendChild(this.winLooseBanner(value));
     }
 
     compareValues() {
         let table = document.querySelector('.table');
 
-        if(player.score === 21 && player.attempts === 2){
+        if (player.score === 21 && player.attempts === 2) {
             this.deal = false;
-            console.log('player won');
+            this.update(document.body, 'Black Jack Dude!');
         }
 
-        if(this.player.score > 21){
+        if (this.player.score > 21) {
             this.update(document.body, 'You Loose');
         }
         
-        if(!this.player.isPlaying){
-            if(this.player.score > this.computer.score){
+        
+
+        if (!this.player.isPlaying) {
+            if (this.player.score > this.computer.score) {
                 this.update(document.body, 'You Won!');
             } else {
-                this.update(document.body, 'You Loose!');
+                if(this.computer.score > 21){
+                    this.update(document.body, 'You Won');
+                } else {
+                    this.update(document.body, 'You Loose!');
+                }
             }
         }
-        
+
     }
 
 
