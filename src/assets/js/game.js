@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
 
 
     // console.log(deck);
@@ -22,29 +22,43 @@ class Game {
         // Create and shuffle a new deck of cards
         const deck = new Deck();
         deck.shuffle();
-        
+
         let playerParent;
-        if(playerSide === player){
+        if (playerSide === player) {
             playerParent = document.querySelector('.cards-player');
-        } else if(playerSide === computer){
+        } else if (playerSide === computer) {
             playerParent = document.querySelector('.cards-dealer');
         }
-        
+
         const hitButton = document.querySelector('.js-hit');
-        
+
         // coutner to get the latest card from the deck
         let counter = 1;
         // hitButton.addEventListener('click', () => {
-            let cardFromStack = deck.cards[deck.cards.length - counter]
-            const card = new Card(cardFromStack.rank, cardFromStack.suit);
+        let cardFromStack = deck.cards[deck.cards.length - counter]
+        const card = new Card(cardFromStack.rank, cardFromStack.suit);
 
-            this.player.score += cardFromStack.rank;
-			console.log('TCL: Game -> playCards -> this.player.score', this.player.score)
+        let receivedCard = cardFromStack.rank;
+        let cardValue = 0;
+        if (parseInt(receivedCard)) {
+            cardValue = parseInt(receivedCard);
+        } else if (receivedCard === 'ace') {
+            cardValue = 11;
+        } else {
+            cardValue = 10;
+        }
+         
+        
+                
 
-            card.mount(playerParent)
-            console.log(card);
-            counter++;
-            console.log(counter);
+
+        console.log('TCL: Game -> dealCards -> cardsValue', cardValue, typeof cardValue)
+
+
+        card.mount(playerParent)
+        console.log(card);
+        counter++;
+        // console.log(counter);
         // });
     }
 
