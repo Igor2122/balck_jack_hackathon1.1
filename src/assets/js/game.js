@@ -85,11 +85,14 @@ class Game {
             }
 
         }
-        console.log('TCL: feelLuckyAlg -> numSame.length', numSame.length)
-        if (numSame.length >= 2) {
+        console.log(numSame.length);
+
+        if (numSame.length >= 1) {
             lucky = true;
-        } else {
-            lucky = false;
+        }
+
+        if (lucky) {
+            console.log('I feel lucky');
         }
         return lucky;
 
@@ -97,12 +100,17 @@ class Game {
 
     playCards() {
         if (this.deal) {
-
             if (player.isPlaying) {
                 this.dealCards(player);
             } else {
-                while (this.computer.score < 17) {
-                    this.dealCards(computer);
+                if (this.feelLuckyAlg()) {
+                    while (this.computer.score < 21) {
+                        this.dealCards(computer);
+                    }
+                } else {
+                    while (this.computer.score < 17) {
+                        this.dealCards(computer);
+                    }
                 }
             }
         }

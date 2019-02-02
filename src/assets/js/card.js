@@ -15,9 +15,7 @@ class Card {
     return this.element;
   }
 
-  update() {
-    
-  }
+
 
   mount(parent) {
     parent.appendChild(this.render());
