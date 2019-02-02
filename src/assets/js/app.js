@@ -1,7 +1,8 @@
 const player = new Player('Igor');
 const computer = new Computer('Enemy');
+const card = new Card();
 
-const game = new Game(player, computer);
+const game = new Game(player, computer, card);
 
 document.addEventListener('click', e => {
     if (e.target.classList.contains('js-hit')) {

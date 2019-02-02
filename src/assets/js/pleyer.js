@@ -12,7 +12,9 @@ class Player {
 
     update(){
         let playerScore = document.querySelector('.player-score');
-        playerScore.textContent = this.score;
+        setTimeout(() => {
+            playerScore.textContent = this.score;
+        }, 1000);
     }
 
 

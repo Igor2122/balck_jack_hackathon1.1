@@ -1,9 +1,12 @@
 class Game {
-    constructor(player, computer) {
+    constructor(player, computer, card) {
         this.player = player;
         this.computer = computer;
         this.deal = true;
+        this.card = card;
     }
+
+    
 
 
 
@@ -12,6 +15,7 @@ class Game {
         // Create and shuffle a new deck of cards
         const deck = new Deck();
         deck.shuffle();
+        
 
         let playerParent;
         if (playerSide === player) {
@@ -27,15 +31,8 @@ class Game {
         const card = new Card(cardFromStack.rank, cardFromStack.suit);
 
         let receivedCard = cardFromStack.rank;
-        let cardValue = 0;
-        if (parseInt(receivedCard)) {
-            cardValue = parseInt(receivedCard);
-        } else if (receivedCard === 'ace') {
-            cardValue = 11;
-        } else {
-            cardValue = 10;
-        }
-
+        
+        let cardValue = this.card.getCardValues(receivedCard);
 
         if (player.isPlaying) {
             player.score += cardValue;
@@ -48,7 +45,7 @@ class Game {
             this.computer.update();
         }
 
-        card.mount(playerParent)
+        card.mount(playerParent);
         counter++;
 
     }
@@ -86,23 +83,28 @@ class Game {
     }
 
     playCards() {
+
+
         if (this.deal) {
             if (player.isPlaying) {
                 this.dealCards(player);
             } else {
                 if (this.feelLuckyAlg(1)) {
-                    while (this.computer.score < 20) {
-                        this.dealCards(computer);
+                    // while (this.computer.score < 20) {
+                    if (this.computer.score < 20) {
+                        const buttonDeal = document.querySelector('.js-hit');
+                        buttonDeal.click(this.dealCards(computer));
                     }
+                    // this.dealCards(computer);
+                    // }
                 }
-                while (this.computer.score < 17) {
-                    this.dealCards(computer);
-                }
+                // while (this.computer.score < 17) {
+                //     this.dealCards(computer);
+                // }
             }
         }
 
         this.compareValues()
-
     }
 
     winLooseBanner(value) {
