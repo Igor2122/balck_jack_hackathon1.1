@@ -9,10 +9,13 @@ class Card {
 
   
   render () {
+    // setTimeout(() => {
     this.element = document.createElement('div');
     this.element.className = `card face-${this.rank}-of-${this.suit}`;
-
-    return this.element;
+    
+  
+      return this.element;
+    // }, 2000);
   }
 
   update() {
@@ -20,7 +23,9 @@ class Card {
   }
 
   mount(parent) {
-    parent.appendChild(this.render());
+    // setTimeout(() => {
+      parent.appendChild(this.render());
+    // }, 2000);
   }
 
 

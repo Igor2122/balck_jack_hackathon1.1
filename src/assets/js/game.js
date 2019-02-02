@@ -6,9 +6,6 @@ class Game {
     }
 
 
-    seeScores() {
-        console.log(this.player.score, this.player.attempts);
-    }
 
     dealCards(playerSide) {
 
@@ -23,11 +20,9 @@ class Game {
             playerParent = document.querySelector('.cards-dealer');
         }
 
-        const hitButton = document.querySelector('.js-hit');
 
         // coutner to get the latest card from the deck
         let counter = 1;
-        // hitButton.addEventListener('click', () => {
         let cardFromStack = deck.cards[deck.cards.length - counter]
         const card = new Card(cardFromStack.rank, cardFromStack.suit);
 
@@ -53,16 +48,12 @@ class Game {
             this.computer.update();
         }
 
-
-
-
         card.mount(playerParent)
-        // console.log(card);
         counter++;
 
     }
 
-    feelLuckyAlg() {
+    feelLuckyAlg(level) {
         let randomNums = [];
         let luckyNums = [];
         let numSame = [];
@@ -86,21 +77,24 @@ class Game {
 
         }
         console.log('TCL: feelLuckyAlg -> numSame.length', numSame.length)
-        if (numSame.length >= 2) {
+        if (numSame.length >= level) {
             lucky = true;
-        } else {
-            lucky = false;
         }
+        console.log('Feeling lucky');
         return lucky;
 
     }
 
     playCards() {
         if (this.deal) {
-
             if (player.isPlaying) {
                 this.dealCards(player);
             } else {
+                if (this.feelLuckyAlg(1)) {
+                    while (this.computer.score < 20) {
+                        this.dealCards(computer);
+                    }
+                }
                 while (this.computer.score < 17) {
                     this.dealCards(computer);
                 }
