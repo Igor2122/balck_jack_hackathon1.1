@@ -14,7 +14,7 @@ class Player {
         let playerScore = document.querySelector('.player-score');
         setTimeout(() => {
             playerScore.textContent = this.score;
-        }, 1000);
+        }, 500);
     }
 
 

@@ -103,8 +103,9 @@ class Game {
                 // }
             }
         }
-
-        this.compareValues()
+        setTimeout(() => {
+            this.compareValues()
+        }, 1000);
     }
 
     winLooseBanner(value) {
